@@ -10,9 +10,13 @@ import { WeatherService } from './weather.service';
 export class AppComponent implements OnInit {
   public title = 'gk-weather-app';
 
+  public isLoading: boolean = true;
+
+  public hasLoaded: boolean = false;
+
   public errorMsg: string = '';
 
-  public todayDate:string = '';
+  public todayDate: string = '';
 
   public forecast: Forecast = <Forecast>{};
 
@@ -73,7 +77,6 @@ export class AppComponent implements OnInit {
         this.todayMax = todaysForcast.temp.max;
         this.todayMin = todaysForcast.temp.min;
         this.todayTemp = todaysForcast.temp.day;
-        // console.log(this.forecast.list[0]);
         this.setRestOfWeekForecast(restOfWeekForCast);
         this.dateFormatter();
         // this.isLoading = false;
@@ -83,19 +86,23 @@ export class AppComponent implements OnInit {
           // this.isLoading = false;
         });
   }
+  // CHECK THIS FUNCTION 
   public futureDateFormatter(weeklyForcast: List[]) {
-    let restOfWeek = weeklyForcast;
     let index = 1;
-    for (let i = 0; i < restOfWeek.length; i++) {
+    for (let i = 0; i < weeklyForcast.length; i++) {
       // Add date day to the day of the week data collection
       let dayOfweek = new Date(Date.now() + (index + i) * 86400000);
-      restOfWeek[i].day = dayOfweek.getDate();
+      weeklyForcast[i].day = dayOfweek.getDate();
     }
-    this.sortedForecast = restOfWeek;
+    console.log('weeekly ', weeklyForcast);
+    this.sortedForecast = weeklyForcast;
+    console.log('weeekly SORTED ', this.sortedForecast);
+
   }
 
   public setRestOfWeekForecast(weeklyForcast: List[]): void {
     weeklyForcast.shift();
+    // console.log('weekly',weeklyForcast)
     this.futureDateFormatter(weeklyForcast);
   }
 

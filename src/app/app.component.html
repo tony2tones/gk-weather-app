@@ -7,11 +7,23 @@
     <div class="today-details">
       <p>Today {{ todayDate }}</p>
       <p>Area: {{ forecast.city?.name || "Your area" }}</p>
-      <p class="day-temp">{{ todayTemp | celcuisConverter}}</p>
+      <p class="day-temp">{{ todayTemp | celcuisConverter }}</p>
       <p>
         Max {{ todayMax | celcuisConverter }} Min
         {{ todayMin | celcuisConverter }}
       </p>
+    </div>
+  </div>
+  <div class="rest-of-week">
+    <div *ngFor="let dayOfWeek of sortedForecast; let i = index">
+        <app-week-weather 
+        [minTemp]="dayOfWeek.temp.min"
+        [maxTemp]="dayOfWeek.temp.max"
+        [todayTemp]="dayOfWeek.temp.day"
+        [dateOfWeek]="dayOfWeek.temp.day"
+        (rendingComplete)="hasLoaded = $event"
+        >
+    </app-week-weather>
     </div>
   </div>
 </div>

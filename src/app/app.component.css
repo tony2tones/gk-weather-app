@@ -17,7 +17,6 @@
   .today-weather {
     font-family: sans-serif;
     margin: auto 10%;
-    
   }
 
   .today-details {
@@ -25,10 +24,21 @@
       font-family: sans-serif;
       padding-top: 2rem;
       font-size: x-large;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid whitesmoke;
   }
 
   .day-temp{
       font-size: 14rem;
+      
+  }
+
+  .rest-of-week{
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
   }
 
   .refresh-btn {
