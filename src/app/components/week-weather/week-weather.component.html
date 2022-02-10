@@ -2,7 +2,8 @@
   <ul>
     <li>
       <div class="row-content">
-        <div class="date">{{ dateOfWeek }}</div>
+        <!-- <div class="date">{{ dateOfWeek }}</div> -->
+        <p>{{ todayTemp | celcuisConverter}}</p>
         <p>
           {{ minTemp | celcuisConverter }} /{{ maxTemp | celcuisConverter }}
         </p>

@@ -94,9 +94,7 @@ export class AppComponent implements OnInit {
       let dayOfweek = new Date(Date.now() + (index + i) * 86400000);
       weeklyForcast[i].day = dayOfweek.getDate();
     }
-    console.log('weeekly ', weeklyForcast);
     this.sortedForecast = weeklyForcast;
-    console.log('weeekly SORTED ', this.sortedForecast);
 
   }
 
