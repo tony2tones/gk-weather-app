@@ -26,6 +26,8 @@ export class AppComponent implements OnInit {
 
   public todayMin: number = 0;
 
+  public todayTemp: number = 0;
+
   public cityName: string = '';
 
   constructor(private weatherService: WeatherService) { }
@@ -56,7 +58,8 @@ export class AppComponent implements OnInit {
     const dateValue: Date = new Date();
     let day = dateValue.getDate();
     let month = dateValue.toLocaleString('default', { month: 'short' });
-    this.todayDate = `${day} ${month}`;
+    let year = dateValue.getFullYear();
+    this.todayDate = `${day} ${month} ${year}`;
   }
 
   public getWeather(position: Position): void {
@@ -65,11 +68,15 @@ export class AppComponent implements OnInit {
       .subscribe((response: Forecast) => {
         this.forecast = response;
         this.cityName = this.forecast.city.name;
-        this.weekForecast = this.forecast.list;
-        this.todayMax = this.weekForecast[0].temp.max;
-        this.todayMin = this.weekForecast[0].temp.min;
+        const [todaysForcast, ...restOfWeekForCast] = this.forecast.list;
 
-        this.setRestOfWeekForecast(this.weekForecast);
+        console.log(todaysForcast);
+        console.log('rest of week ',restOfWeekForCast);
+        this.todayMax = todaysForcast.temp.max;
+        this.todayMin = todaysForcast.temp.min;
+        this.todayTemp = todaysForcast.temp.day;
+        // console.log(this.forecast.list[0]);
+        this.setRestOfWeekForecast(restOfWeekForCast);
         this.dateFormatter();
         // this.isLoading = false;
       },

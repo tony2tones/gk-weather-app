@@ -1,9 +1,19 @@
-<h1>{{ title }} </h1>
+<div class="container">
+  <div class="loader"></div>
+  <div class="today-weather">
+    <div class="today-header">
+      <h1>{{ title }}</h1>
+    </div>
+    <div class="today-details">
+      <p>Today {{ todayDate }}</p>
+      <p>Area: {{ forecast.city?.name || "Your area" }}</p>
+      <p class="day-temp">{{ todayTemp | celcuisConverter}}</p>
+      <p>
+        Max {{ todayMax | celcuisConverter }} Min
+        {{ todayMin | celcuisConverter }}
+      </p>
+    </div>
+  </div>
+</div>
 
-Today {{ todayDate }}
-
-Max {{ todayMax | celcuisConverter}}
-Min {{ todayMin | celcuisConverter}}
-
-{{forecast.city?.name || "Your area"}}
 <!-- <button class="btn btn-primary">GET INFO </button> -->
