@@ -70,8 +70,6 @@ export class AppComponent implements OnInit {
         this.cityName = this.forecast.city.name;
         const [todaysForcast, ...restOfWeekForCast] = this.forecast.list;
 
-        console.log(todaysForcast);
-        console.log('rest of week ',restOfWeekForCast);
         this.todayMax = todaysForcast.temp.max;
         this.todayMin = todaysForcast.temp.min;
         this.todayTemp = todaysForcast.temp.day;
