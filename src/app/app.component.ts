@@ -99,6 +99,7 @@ export class AppComponent implements OnInit {
   }
 
   public toggleRestOfWeek() {
+    console.log(this.restOfWeekToggle);
     this.restOfWeekToggle = !this.restOfWeekToggle;
   }
 

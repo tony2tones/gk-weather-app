@@ -46,6 +46,10 @@
     border-bottom: 1px solid whitesmoke;
   }
 
+  .menuToggle:hover{
+    cursor: pointer;
+  }
+
   .rotateClass {
     transform: rotate(180deg);
   }

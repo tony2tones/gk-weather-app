@@ -17,9 +17,9 @@
     </div>
   </div>
   <div class="menuToggle" (click)="toggleRestOfWeek()">
-    <p>Show rest of week</p><span
+    <p><span class="tab-hidden">Tap to </span>Show rest of week</p><span
     ><img
-      ngClass="{ rotateClass: menuToggle }"
+    [ngClass]="{'rotateClass' : restOfWeekToggle }"
       src="../assets/Vector.png"
       alt="triangle with all three sides equal"
   /></span>
