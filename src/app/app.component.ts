@@ -10,25 +10,25 @@ import { WeatherService } from './weather.service';
 export class AppComponent implements OnInit {
   public title = 'gk-weather-app';
 
+  public isLoading: boolean = true;
+
+  public hasLoaded: boolean = false;
+
   public errorMsg: string = '';
 
-  public todayDate:string = '';
+  public todayDate: string = '';
 
   public forecast: Forecast = <Forecast>{};
 
   public weekForecast: List[] = [];
 
-  public sortedForecast: List[] = [];
-
   public dayCount: number = 0;
 
-  public todayMax: number = 0;
-
-  public todayMin: number = 0;
-
-  public todayTemp: number = 0;
+  public forcastToday:List = <List>{};
 
   public cityName: string = '';
+
+  public descriptionDay: string = "";
 
   constructor(private weatherService: WeatherService) { }
 
@@ -69,13 +69,14 @@ export class AppComponent implements OnInit {
         this.forecast = response;
         this.cityName = this.forecast.city.name;
         const [todaysForcast, ...restOfWeekForCast] = this.forecast.list;
+        const [descpt] = todaysForcast.weather;
+        this.descriptionDay = descpt.description;
+        this.forcastToday = todaysForcast;
+        this.weekForecast = restOfWeekForCast;
 
-        this.todayMax = todaysForcast.temp.max;
-        this.todayMin = todaysForcast.temp.min;
-        this.todayTemp = todaysForcast.temp.day;
-        // console.log(this.forecast.list[0]);
-        this.setRestOfWeekForecast(restOfWeekForCast);
+        this.futureDateFormatter([this.forcastToday]);
         this.dateFormatter();
+        console.log('I WANT TODAYS FORECAST HERE',this.forcastToday);
         // this.isLoading = false;
       },
         (error: any) => {
@@ -83,20 +84,13 @@ export class AppComponent implements OnInit {
           // this.isLoading = false;
         });
   }
+  // CHECK THIS FUNCTION 
   public futureDateFormatter(weeklyForcast: List[]) {
-    let restOfWeek = weeklyForcast;
-    let index = 1;
-    for (let i = 0; i < restOfWeek.length; i++) {
+    for (let i = 0; i < weeklyForcast.length; i++) {
       // Add date day to the day of the week data collection
-      let dayOfweek = new Date(Date.now() + (index + i) * 86400000);
-      restOfWeek[i].day = dayOfweek.getDate();
+      let dayOfweek = new Date(Date.now() + (i) * 86400000);
+      weeklyForcast[i].date = dayOfweek.getDate();
     }
-    this.sortedForecast = restOfWeek;
-  }
-
-  public setRestOfWeekForecast(weeklyForcast: List[]): void {
-    weeklyForcast.shift();
-    this.futureDateFormatter(weeklyForcast);
   }
 
   public resetForecast(): void {

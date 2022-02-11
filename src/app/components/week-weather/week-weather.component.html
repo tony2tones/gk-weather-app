@@ -1,0 +1,15 @@
+<div class="container-week">
+  <ul>
+    <li>
+      <div class="row-content">
+        <div class="date">{{ dateOfWeek }}</div>
+        <p>Ave: {{ todayTemp | celcuisConverter}}</p>
+        <!-- <p>{{ dateOfWeek.month }}</p>clear
+         -->
+        <p>
+          {{ minTemp | celcuisConverter }} /{{ maxTemp | celcuisConverter }}
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CelcuisConverter } from './celcuis-converter.directive';
+import { WeekWeatherComponent } from './components/week-weather/week-weather.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoaderComponent,
-    CelcuisConverter
+    CelcuisConverter,
+    WeekWeatherComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,11 @@
 export interface Forecast {
     city: City;
     list: List[];
-    day?:number;
+    date?:number;
 }
 
 export interface List {
+    date: number;
     day: number;
     weather: Weather[];
     temp: Temp;
