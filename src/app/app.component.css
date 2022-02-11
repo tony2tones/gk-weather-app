@@ -20,17 +20,16 @@
   }
 
   .today-details {
-      text-align: center;
-      font-family: sans-serif;
-      padding-top: 2rem;
-      font-size: x-large;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid whitesmoke;
+    text-align: center;
+    font-family: sans-serif;
+    padding-top: 2rem;
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid whitesmoke;
   }
 
-  .day-temp{
-      font-size: 14rem;
-      
+  .day-temp {
+    font-size: 14rem;
   }
 
   .min-max {
@@ -38,12 +37,26 @@
     border-bottom: 1px solid whitesmoke;
   }
 
+  .menuToggle {
+    text-align: center;
+    font-family: sans-serif;
+    padding-top: 2rem;
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid whitesmoke;
+  }
+
+  .rotateClass {
+    transform: rotate(180deg);
+  }
+  
+
   .description {
     padding-top: 1rem;
     border-top: 1px solid whitesmoke;
   }
 
-  .rest-of-week{
+  .rest-of-week {
     text-align: center;
     align-items: center;
     display: flex;
@@ -52,7 +65,5 @@
   }
 
   .refresh-btn {
-
   }
-
 }

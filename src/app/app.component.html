@@ -16,7 +16,15 @@
        <p class="description">{{ descriptionDay }}</p>
     </div>
   </div>
-  <div class="rest-of-week">
+  <div class="menuToggle" (click)="toggleRestOfWeek()">
+    <p>Show rest of week</p><span
+    ><img
+      ngClass="{ rotateClass: menuToggle }"
+      src="../assets/Vector.png"
+      alt="triangle with all three sides equal"
+  /></span>
+  </div>
+  <div *ngIf="restOfWeekToggle" class="rest-of-week">
     <div *ngFor="let dayOfWeek of weekForecast; let i = index">
       <app-week-weather
         [minTemp]="dayOfWeek.temp.min"

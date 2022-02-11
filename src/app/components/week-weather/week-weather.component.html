@@ -2,10 +2,10 @@
   <ul>
     <li>
       <div class="row-content">
-        <div class="date">{{ dateOfWeek }}</div>
+        <div class="date"><span> <img class="icon-calander" src="../../../assets/icons/calendarIcon.png" /></span>  {{ dateOfWeek }}</div>
         <p>Ave: {{ todayTemp | celcuisConverter}}</p>
-        <!-- <p>{{ dateOfWeek.month }}</p>clear
-         -->
+        <!-- <p>{{ dateOfWeek.month }}</p>clear -->
+        
         <p>
           {{ minTemp | celcuisConverter }} /{{ maxTemp | celcuisConverter }}
         </p>
