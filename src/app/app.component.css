@@ -33,6 +33,16 @@
       
   }
 
+  .min-max {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid whitesmoke;
+  }
+
+  .description {
+    padding-top: 1rem;
+    border-top: 1px solid whitesmoke;
+  }
+
   .rest-of-week{
     text-align: center;
     align-items: center;

@@ -5,25 +5,27 @@
       <h1>{{ title }}</h1>
     </div>
     <div class="today-details">
-      <p>Today {{ todayDate }}</p>
+      <p>Weather for Today</p>
+       <p> {{ todayDate }}</p>
       <p>Area: {{ cityName || "Your area" }}</p>
-      <p class="day-temp">{{ forcastToday.temp.day | celcuisConverter }}</p>
-      <p>
-        Max {{ forcastToday.temp.max | celcuisConverter }} Min
-        {{ forcastToday.temp.min | celcuisConverter }}
+      <p class="day-temp">{{ forcastToday.temp?.day  | celcuisConverter }}</p>
+      <p class="min-max">
+        Max {{ forcastToday.temp?.max | celcuisConverter }} Min
+        {{ forcastToday.temp?.min | celcuisConverter }}
       </p>
+       <p class="description">{{ descriptionDay }}</p>
     </div>
   </div>
   <div class="rest-of-week">
     <div *ngFor="let dayOfWeek of weekForecast; let i = index">
-        <app-week-weather 
+      <app-week-weather
         [minTemp]="dayOfWeek.temp.min"
         [maxTemp]="dayOfWeek.temp.max"
         [todayTemp]="dayOfWeek.temp.day"
-        [dateOfWeek]="dayOfWeek.day"
+        [dateOfWeek]="dayOfWeek.date"
         (rendingComplete)="hasLoaded = $event"
-        >
-    </app-week-weather>
+      >
+      </app-week-weather>
     </div>
   </div>
 </div>

@@ -22,17 +22,9 @@ export class AppComponent implements OnInit {
 
   public weekForecast: List[] = [];
 
-  public sortedForecast: List[] = [];
-
   public dayCount: number = 0;
 
   public forcastToday:List = <List>{};
-
-  // public todayMax: number = 0;
-
-  // public todayMin: number = 0;
-
-  // public todayTemp: number = 0;
 
   public cityName: string = '';
 
@@ -77,13 +69,14 @@ export class AppComponent implements OnInit {
         this.forecast = response;
         this.cityName = this.forecast.city.name;
         const [todaysForcast, ...restOfWeekForCast] = this.forecast.list;
-
-        this.futureDateFormatter(restOfWeekForCast);
-        this.futureDateFormatter([this.forcastToday]);
+        const [descpt] = todaysForcast.weather;
+        this.descriptionDay = descpt.description;
         this.forcastToday = todaysForcast;
         this.weekForecast = restOfWeekForCast;
+
+        this.futureDateFormatter([this.forcastToday]);
         this.dateFormatter();
-        console.log('REST OF WEEK TO SUBMIT TO COMPONBENT',this.weekForecast);
+        console.log('I WANT TODAYS FORECAST HERE',this.forcastToday);
         // this.isLoading = false;
       },
         (error: any) => {
@@ -93,22 +86,12 @@ export class AppComponent implements OnInit {
   }
   // CHECK THIS FUNCTION 
   public futureDateFormatter(weeklyForcast: List[]) {
-    // let index = 1;
     for (let i = 0; i < weeklyForcast.length; i++) {
       // Add date day to the day of the week data collection
       let dayOfweek = new Date(Date.now() + (i) * 86400000);
-      weeklyForcast[i].day = dayOfweek.getDate();
+      weeklyForcast[i].date = dayOfweek.getDate();
     }
-    // this.sortedForecast = weeklyForcast;
-
   }
-
-  // public setRestOfWeekForecast(weeklyForcast: List[]): void {
-  //   console.log(weeklyForcast.length);
-  //   weeklyForcast.shift();
-  //   // console.log('weekly',weeklyForcast)
-  //   this.futureDateFormatter(weeklyForcast);
-  // }
 
   public resetForecast(): void {
     this.forecast = <Forecast>{};
