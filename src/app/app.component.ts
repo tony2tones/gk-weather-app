@@ -28,12 +28,6 @@ export class AppComponent implements OnInit {
 
   public forcastToday:List = <List>{};
 
-  // public todayMax: number = 0;
-
-  // public todayMin: number = 0;
-
-  // public todayTemp: number = 0;
-
   public cityName: string = '';
 
   public descriptionDay: string = "";
@@ -93,22 +87,13 @@ export class AppComponent implements OnInit {
   }
   // CHECK THIS FUNCTION 
   public futureDateFormatter(weeklyForcast: List[]) {
-    // let index = 1;
+    let index = 17;
     for (let i = 0; i < weeklyForcast.length; i++) {
       // Add date day to the day of the week data collection
-      let dayOfweek = new Date(Date.now() + (i) * 86400000);
+      let dayOfweek = new Date(Date.now() + (index + i) * 86400000);
       weeklyForcast[i].day = dayOfweek.getDate();
     }
-    // this.sortedForecast = weeklyForcast;
-
   }
-
-  // public setRestOfWeekForecast(weeklyForcast: List[]): void {
-  //   console.log(weeklyForcast.length);
-  //   weeklyForcast.shift();
-  //   // console.log('weekly',weeklyForcast)
-  //   this.futureDateFormatter(weeklyForcast);
-  // }
 
   public resetForecast(): void {
     this.forecast = <Forecast>{};
