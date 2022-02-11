@@ -16,7 +16,9 @@ import { WeekWeatherComponent } from './components/week-weather/week-weather.com
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    // BrowserAnimationsModule,
+    // MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

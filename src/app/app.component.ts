@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
 
   public isLoading: boolean = true;
 
+  public restOfWeekToggle: boolean = false;
+
   public hasLoaded: boolean = false;
 
   public errorMsg: string = '';
@@ -24,11 +26,13 @@ export class AppComponent implements OnInit {
 
   public dayCount: number = 0;
 
-  public forcastToday:List = <List>{};
+  public currentMonth: string = '';
+
+  public forcastToday: List = <List>{};
 
   public cityName: string = '';
 
-  public descriptionDay: string = "";
+  public descriptionDay: string = '';
 
   constructor(private weatherService: WeatherService) { }
 
@@ -59,6 +63,7 @@ export class AppComponent implements OnInit {
     let day = dateValue.getDate();
     let month = dateValue.toLocaleString('default', { month: 'short' });
     let year = dateValue.getFullYear();
+    this.currentMonth = month;
     this.todayDate = `${day} ${month} ${year}`;
   }
 
@@ -74,9 +79,9 @@ export class AppComponent implements OnInit {
         this.forcastToday = todaysForcast;
         this.weekForecast = restOfWeekForCast;
 
-        this.futureDateFormatter([this.forcastToday]);
+        this.futureDateFormatter(this.weekForecast);
         this.dateFormatter();
-        console.log('I WANT TODAYS FORECAST HERE',this.forcastToday);
+        console.log('I WANT TODAYS FORECAST HERE', this.forcastToday);
         // this.isLoading = false;
       },
         (error: any) => {
@@ -91,6 +96,10 @@ export class AppComponent implements OnInit {
       let dayOfweek = new Date(Date.now() + (i) * 86400000);
       weeklyForcast[i].date = dayOfweek.getDate();
     }
+  }
+
+  public toggleRestOfWeek() {
+    this.restOfWeekToggle = !this.restOfWeekToggle;
   }
 
   public resetForecast(): void {
