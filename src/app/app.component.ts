@@ -26,13 +26,17 @@ export class AppComponent implements OnInit {
 
   public dayCount: number = 0;
 
-  public todayMax: number = 0;
+  public forcastToday:List = <List>{};
 
-  public todayMin: number = 0;
+  // public todayMax: number = 0;
 
-  public todayTemp: number = 0;
+  // public todayMin: number = 0;
+
+  // public todayTemp: number = 0;
 
   public cityName: string = '';
+
+  public descriptionDay: string = "";
 
   constructor(private weatherService: WeatherService) { }
 
@@ -74,11 +78,12 @@ export class AppComponent implements OnInit {
         this.cityName = this.forecast.city.name;
         const [todaysForcast, ...restOfWeekForCast] = this.forecast.list;
 
-        this.todayMax = todaysForcast.temp.max;
-        this.todayMin = todaysForcast.temp.min;
-        this.todayTemp = todaysForcast.temp.day;
-        this.setRestOfWeekForecast(restOfWeekForCast);
+        this.futureDateFormatter(restOfWeekForCast);
+        this.futureDateFormatter([this.forcastToday]);
+        this.forcastToday = todaysForcast;
+        this.weekForecast = restOfWeekForCast;
         this.dateFormatter();
+        console.log('REST OF WEEK TO SUBMIT TO COMPONBENT',this.weekForecast);
         // this.isLoading = false;
       },
         (error: any) => {
@@ -88,21 +93,22 @@ export class AppComponent implements OnInit {
   }
   // CHECK THIS FUNCTION 
   public futureDateFormatter(weeklyForcast: List[]) {
-    let index = 1;
+    // let index = 1;
     for (let i = 0; i < weeklyForcast.length; i++) {
       // Add date day to the day of the week data collection
-      let dayOfweek = new Date(Date.now() + (index + i) * 86400000);
+      let dayOfweek = new Date(Date.now() + (i) * 86400000);
       weeklyForcast[i].day = dayOfweek.getDate();
     }
-    this.sortedForecast = weeklyForcast;
+    // this.sortedForecast = weeklyForcast;
 
   }
 
-  public setRestOfWeekForecast(weeklyForcast: List[]): void {
-    weeklyForcast.shift();
-    // console.log('weekly',weeklyForcast)
-    this.futureDateFormatter(weeklyForcast);
-  }
+  // public setRestOfWeekForecast(weeklyForcast: List[]): void {
+  //   console.log(weeklyForcast.length);
+  //   weeklyForcast.shift();
+  //   // console.log('weekly',weeklyForcast)
+  //   this.futureDateFormatter(weeklyForcast);
+  // }
 
   public resetForecast(): void {
     this.forecast = <Forecast>{};
