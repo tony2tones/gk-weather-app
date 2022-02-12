@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   public isLoading: boolean = true;
 
-  public restOfWeekToggle: boolean = false;
+  public restOfWeekToggle: boolean = true;
 
   public hasLoaded: boolean = false;
 
@@ -99,7 +99,6 @@ export class AppComponent implements OnInit {
   }
 
   public toggleRestOfWeek() {
-    console.log(this.restOfWeekToggle);
     this.restOfWeekToggle = !this.restOfWeekToggle;
   }
 

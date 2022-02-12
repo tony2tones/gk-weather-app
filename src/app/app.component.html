@@ -6,34 +6,37 @@
     </div>
     <div class="today-details">
       <p>Weather for Today</p>
-       <p> {{ todayDate }}</p>
+      <p>{{ todayDate }}</p>
       <p>Area: {{ cityName || "Your area" }}</p>
-      <p class="day-temp">{{ forcastToday.temp?.day  | celcuisConverter }}</p>
+      <p class="day-temp">{{ forcastToday.temp?.day | celcuisConverter }}</p>
       <p class="min-max">
         Max {{ forcastToday.temp?.max | celcuisConverter }} Min
         {{ forcastToday.temp?.min | celcuisConverter }}
       </p>
-       <p class="description">{{ descriptionDay }}</p>
+      <p class="description">{{ descriptionDay }}</p>
     </div>
   </div>
-  <div class="menuToggle" (click)="toggleRestOfWeek()">
-    <p><span class="tab-hidden">Tap to </span>Show rest of week</p><span
-    ><img
-    [ngClass]="{'rotateClass' : restOfWeekToggle }"
-      src="../assets/Vector.png"
-      alt="triangle with all three sides equal"
-  /></span>
-  </div>
-  <div *ngIf="restOfWeekToggle" class="rest-of-week">
-    <div *ngFor="let dayOfWeek of weekForecast; let i = index">
-      <app-week-weather
-        [minTemp]="dayOfWeek.temp.min"
-        [maxTemp]="dayOfWeek.temp.max"
-        [todayTemp]="dayOfWeek.temp.day"
-        [dateOfWeek]="dayOfWeek.date"
-        (rendingComplete)="hasLoaded = $event"
-      >
-      </app-week-weather>
+  <div class="rest-of-week-container">
+    <div class="menuToggle" (click)="toggleRestOfWeek()">
+      <p><span class="tab-hidden">Tap to </span>Show rest of week</p>
+      <span
+        ><img
+          [ngClass]="{ rotateClass: restOfWeekToggle }"
+          src="../assets/Vector.png"
+          alt="triangle with all three sides equal"
+      /></span>
+    </div>
+    <div *ngIf="restOfWeekToggle" class="rest-of-week">
+      <div *ngFor="let dayOfWeek of weekForecast; let i = index">
+        <app-week-weather
+          [minTemp]="dayOfWeek.temp.min"
+          [maxTemp]="dayOfWeek.temp.max"
+          [todayTemp]="dayOfWeek.temp.day"
+          [dateOfWeek]="dayOfWeek.date"
+          (rendingComplete)="hasLoaded = $event"
+        >
+        </app-week-weather>
+      </div>
     </div>
   </div>
 </div>
