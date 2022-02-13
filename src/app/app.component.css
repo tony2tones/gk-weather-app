@@ -146,3 +146,80 @@
   .refresh-btn {
   }
 }
+
+
+@media handheld, screen and (min-width: 1010px) {
+
+  .container {
+      display: flex;
+      flex-direction: row;
+      height: auto;
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+
+    .rest-of-week-container{
+      flex-direction: column;
+      width: 500px;
+    }
+  
+    .today-header {
+      text-align: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid whitesmoke;
+    }
+  
+    .today-weather {
+      font-family: sans-serif;
+      margin: none;
+    }
+  
+    .today-details {
+      text-align: center;
+      font-family: sans-serif;
+      padding-top: 2rem;
+      font-size: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid whitesmoke;
+    }
+  
+    .day-temp {
+      font-size: 14rem;
+    }
+  
+    .min-max {
+      padding-bottom: 1rem;
+      border-bottom: 1px solid whitesmoke;
+    }
+  
+    .desktop-view-hidden {
+      display: none;
+    }
+  
+    .menuToggle:hover{
+      cursor: pointer;
+    }
+  
+    .rotateClass {
+      transform: rotate(180deg);
+    }
+  
+  
+    .description {
+      padding-top: 1rem;
+      border-top: 1px solid whitesmoke;
+    }
+  
+    .rest-of-week {
+      text-align: center;
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      margin: auto 10%;
+    }
+  
+    .refresh-btn {
+    }
+  }
+  

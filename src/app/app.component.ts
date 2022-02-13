@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   public isLoading: boolean = true;
 
-  public restOfWeekToggle: boolean = false;
+  public restOfWeekToggle: boolean = true;
 
   public hasLoaded: boolean = false;
 
@@ -81,7 +81,6 @@ export class AppComponent implements OnInit {
 
         this.futureDateFormatter(this.weekForecast);
         this.dateFormatter();
-        console.log('I WANT TODAYS FORECAST HERE', this.forcastToday);
         // this.isLoading = false;
       },
         (error: any) => {
@@ -99,7 +98,6 @@ export class AppComponent implements OnInit {
   }
 
   public toggleRestOfWeek() {
-    console.log(this.restOfWeekToggle);
     this.restOfWeekToggle = !this.restOfWeekToggle;
   }
 
