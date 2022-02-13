@@ -67,7 +67,15 @@
     flex-direction: row;
   }
 
-  .refresh-btn {
+  button.btn-refresh {
+    position: fixed;
+    border-color:#14344b;
+    color:#14344b;
+    position: fixed;
+    left: 70%;
+    bottom: 6px;
+    font-size: x-large;
+    border-radius: 3px;
   }
 }
 
@@ -140,7 +148,15 @@
     margin: auto 10%;
   }
 
-  .refresh-btn {
+  button.btn-refresh {
+    position: fixed;
+    border-color:#14344b;
+    color:#14344b;
+    position: fixed;
+    left: 80%;
+    bottom: 6px;
+    font-size: x-large;
+    border-radius: 3px;
   }
 }
 
@@ -225,8 +241,6 @@
     position: absolute;
     border-color:#14344b;
     color:#14344b;
-    top: 5px;
-    left: 5px;
     font-size: x-large;
     border-radius: 3px;
   }

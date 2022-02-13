@@ -1,8 +1,8 @@
 <div class="container">
   <app-toast-notifications *ngIf="!isLoading && !cityName.length"
-    [errorMsg]="errorMsg"
-    [title]="errorTitle"
-    (submitRefresh)="refresh()"
+  [errorMsg]="errorMsg"
+  [title]="errorTitle"
+  (submitRefresh)="refresh()"
   ></app-toast-notifications>
   <div *ngIf="isLoading" class="loader">
     <app-loader></app-loader>
@@ -28,29 +28,29 @@
       <div class="menuToggle" (click)="toggleRestOfWeek()">
         <p>
           <span class="desktop-view-hidden">Tap to </span
-          >{{ restOfWeekToggle ? "hide" : "show" }} rest of week
-        </p>
-        <span
+            >{{ restOfWeekToggle ? "hide" : "show" }} rest of week
+          </p>
+          <span
           ><img
-            [ngClass]="{ rotateClass: restOfWeekToggle }"
-            src="../assets/Vector.png"
-            alt="triangle with all three sides equal"
-        /></span>
-      </div>
-      <div *ngIf="restOfWeekToggle" class="rest-of-week">
-        <div *ngFor="let dayOfWeek of weekForecast; let i = index">
-          <app-week-weather
+          [ngClass]="{ rotateClass: restOfWeekToggle }"
+          src="../assets/Vector.png"
+          alt="triangle with all three sides equal"
+          /></span>
+        </div>
+        <div *ngIf="restOfWeekToggle" class="rest-of-week">
+          <div *ngFor="let dayOfWeek of weekForecast; let i = index">
+            <app-week-weather
             [minTemp]="dayOfWeek.temp.min"
             [maxTemp]="dayOfWeek.temp.max"
             [todayTemp]="dayOfWeek.temp.day"
             [dateOfWeek]="dayOfWeek.date"
             (rendingComplete)="hasLoaded = $event"
-          >
+            >
           </app-week-weather>
         </div>
       </div>
+      <button (click)="refresh()" class="btn-refresh">REFRESH</button>
     </div>
-    <button (click)="refresh()" class="btn-refresh">REFRESH</button>
   </div>
 </div>
 
