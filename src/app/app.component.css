@@ -148,7 +148,7 @@
 }
 
 
-@media handheld, screen and (min-width: 1010px) {
+@media handheld, screen and (min-width: 1003px) {
 
   .container {
       display: flex;
