@@ -60,23 +60,9 @@ export class AppComponent implements OnInit {
   }
 
   public errorHandler(err: HttpErrorResponse) {
-    console.log('this right ?',err);
-    // this.errorMsg = err?.message ?  err.statusText : err.message;
     this.isLoading = false;
     this.errorTitle = err.name;
     this.errorMsg = err.message;
-    // if (err.status === 401) {
-    //   this.errorTitle = 'Unauthorized'
-    //   this.errorMsg = 'You are not authorized to access the weather API please check your API key';
-    // }
-    // if (err.status === 404) {
-    //   this.errorTitle = 'Http failed to response'
-    //   this.errorMsg = 'Request for weather has failed, plaese try again later';
-    // }
-    // if (err.status === 500) {
-    //   this.errorTitle = 'Server error'
-    //   this.errorMsg = 'Server appears to be offline, please try again later..';
-    // }
 
   }
 
