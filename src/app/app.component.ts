@@ -15,11 +15,11 @@ export class AppComponent implements OnInit {
 
   public isLoading: boolean = true;
 
-  public restOfWeekToggle: boolean = true;
-
-  public hasLoaded: boolean = false;
-
   public errorMsg: string = '';
+  
+  public restOfWeekToggle: boolean = true;
+  
+  public hasLoaded: boolean = false;
 
   public todayDate: string = '';
 
@@ -41,8 +41,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (!navigator.geolocation) {
-      this.isLoading = false;
-      console.log('is this working ');
+      // this.isLoading = false;
       this.errorTitle = 'An error has occurred'
       this.errorMsg = 'geolocation not supported';
     }
@@ -61,9 +60,11 @@ export class AppComponent implements OnInit {
   }
 
   public errorHandler(err: HttpErrorResponse) {
-    console.log(err);
-    this.errorMsg = err.statusText;
+    console.log('this right ?',err);
+    // this.errorMsg = err?.message ?  err.statusText : err.message;
+    this.isLoading = false;
     this.errorTitle = err.name;
+    this.errorMsg = err.message;
     // if (err.status === 401) {
     //   this.errorTitle = 'Unauthorized'
     //   this.errorMsg = 'You are not authorized to access the weather API please check your API key';
@@ -89,7 +90,6 @@ export class AppComponent implements OnInit {
   }
 
   public getWeather(position: Position): void {
-    // this.isLoading = true;
     this.weatherService.getWeather(position.coords.latitude, position.coords.longitude, this.dayCount)
       .subscribe((response: Forecast) => {
         this.forecast = response;
@@ -129,5 +129,5 @@ export class AppComponent implements OnInit {
   public refresh(): void {
     this.resetForecast
     window.location.reload();
-}
+  }
 }

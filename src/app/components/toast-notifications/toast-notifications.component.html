@@ -3,8 +3,11 @@
     <h3>{{ title || "Something went wrong" }}</h3>
   </div>
   <div class="content">
-    <p>The request was not possible due to the following: {{ errorMsg  }}</p>
-    <p>Please try again later or try refreshing your browser</p>
+    <p>The request was not possible due to the following:</p>
+    <br />
+    <p>{{ errorMsg }}</p>
+    <br />
+    <p>{{ errorMsg === "User denied Geolocation" ? "Please enable location to provide you with the weather": "Please try again later or try refreshing your browser" }}</p>
   </div>
   <button (click)="refreshClicked()" class="btn-primary">Refresh</button>
 </div>

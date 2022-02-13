@@ -1,5 +1,5 @@
 <div class="container">
-  <app-toast-notifications *ngIf="!isLoading && cityName.length"
+  <app-toast-notifications *ngIf="!isLoading && !cityName.length"
     [errorMsg]="errorMsg"
     [title]="errorTitle"
     (submitRefresh)="refresh()"
@@ -7,8 +7,8 @@
   <div *ngIf="isLoading" class="loader">
     <app-loader></app-loader>
   </div>
-  <div *ngIf="!cityName.length" class="weather-data">
-    <div *ngIf="!isLoading" class="today-weather">
+  <div *ngIf="cityName.length && !isLoading" class="weather-data">
+    <div class="today-weather">
       <div class="today-header">
         <h1>{{ title }}</h1>
       </div>
