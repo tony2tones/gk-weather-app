@@ -18,7 +18,7 @@
   </div>
   <div class="rest-of-week-container">
     <div class="menuToggle" (click)="toggleRestOfWeek()">
-      <p><span class="tab-hidden">Tap to </span>Show rest of week</p>
+      <p><span class="desktop-view-hidden">Tap to </span>{{restOfWeekToggle ? "hide" : "show" }} rest of week</p>
       <span
         ><img
           [ngClass]="{ rotateClass: restOfWeekToggle }"

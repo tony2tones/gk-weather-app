@@ -41,7 +41,7 @@ describe('AppComponent', () => {
   }));
   
   it('should create the app', () => {
-        navigatorMock = jest.spyOn(global.navigator.geolocation, 'getCurrentPosition').mockImplementation();
+        // navigatorMock = spyOn(global.navigator.geolocation, 'getCurrentPosition').and.callFake({getCurrentPosition: mockGetcurrentPosition});
         expect(component).toBeTruthy();
       });
       

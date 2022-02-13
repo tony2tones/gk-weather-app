@@ -148,10 +148,9 @@
 }
 
 
-@media handheld, screen and (min-width: 1000px) {
+@media handheld, screen and (min-width: 1010px) {
 
   .container {
-
       display: flex;
       flex-direction: row;
       height: auto;
@@ -161,8 +160,7 @@
 
     .rest-of-week-container{
       flex-direction: column;
-      width: auto;
-      margin-top: 5%;
+      width: 500px;
     }
   
     .today-header {
@@ -194,7 +192,7 @@
       border-bottom: 1px solid whitesmoke;
     }
   
-    .menuToggle {
+    .desktop-view-hidden {
       display: none;
     }
   
