@@ -4,12 +4,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 70%;
-    color: ;
-    background-color: white;
+   
+    background-color: whitesmoke;
     padding: 6rem;
     border-radius: 5px;
     box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
     z-index: 10;
+  }
+
+  .loader-container h1 {
+    background-color: whitesmoke;
   }
 
   .overlay {

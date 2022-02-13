@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="loader">
+  <div *ngIf="isLoading" class="loader">
     <app-loader></app-loader>
   </div>
-  <div class="today-weather">
+  <div *ngIf="!isLoading" class="today-weather">
     <div class="today-header">
       <h1>{{ title }}</h1>
     </div>
@@ -18,7 +18,7 @@
       <p class="description">{{ descriptionDay }}</p>
     </div>
   </div>
-  <div class="rest-of-week-container">
+  <div *ngIf="!isLoading"  class="rest-of-week-container">
     <div class="menuToggle" (click)="toggleRestOfWeek()">
       <p><span class="desktop-view-hidden">Tap to </span>{{restOfWeekToggle ? "hide" : "show" }} rest of week</p>
       <span

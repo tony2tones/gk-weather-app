@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
 
         this.futureDateFormatter(this.weekForecast);
         this.dateFormatter();
-        // this.isLoading = false;
+        this.isLoading = false;
       },
         (error: any) => {
           this.errorHandler(error);
