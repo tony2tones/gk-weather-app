@@ -1,4 +1,5 @@
 <div class="container">
+  <app-toast-notifications [errorMsg]="errorMsg" [title]="errorTitle"></app-toast-notifications>
   <div *ngIf="isLoading" class="loader">
     <app-loader></app-loader>
   </div>

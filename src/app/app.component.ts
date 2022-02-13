@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Forecast, List, Position } from 'src/models/forecast.models';
 import { WeatherService } from './weather.service';
@@ -8,7 +9,9 @@ import { WeatherService } from './weather.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public title = 'gk-weather-app';
+  public title: string = 'gk-weather-app';
+
+  public errorTitle: string = '';
 
   public isLoading: boolean = true;
 
@@ -38,6 +41,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (!navigator.geolocation) {
+      this.errorTitle = 'An error has occurred'
       this.errorMsg = 'geolocation not supported';
     }
     this.getForecast();
@@ -54,8 +58,15 @@ export class AppComponent implements OnInit {
     this.getWeather(postion);
   }
 
-  public errorHandler(err: any) {
+  public errorHandler(err: HttpErrorResponse) {
     console.log(err);
+    if(err.status === 401) {
+      this.errorTitle = 'Unauthorized'
+      this.errorMsg = "You are not authorized to access the weather API please check your API key";
+    }
+
+    // this.errorTitle = 'An error has occurred'
+    //   this.errorMsg = err.message;
   }
 
   public dateFormatter(): void {
@@ -85,7 +96,7 @@ export class AppComponent implements OnInit {
       },
         (error: any) => {
           this.errorHandler(error);
-          // this.isLoading = false;
+          this.isLoading = false;
         });
   }
   // CHECK THIS FUNCTION 
