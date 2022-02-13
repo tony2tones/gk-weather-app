@@ -18,7 +18,6 @@ const mockGetcurrentPosition = jest.fn(mockSuccess);
 
 const mockSuccessHandler = jest.fn(() => Mocks.position.coords);
 
-
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
@@ -91,6 +90,24 @@ describe('AppComponent', () => {
     it('should trigger the toggle', () => {
       expect(toggleRestOfWeekSpy).toHaveBeenCalled();
       expect(component.restOfWeekToggle).toBe(false);
-    })
+    });
+  });
+
+  describe('refresh toggle test', () => {
+    let refreshSpy;
+    let resetForecastSpy;
+
+    beforeEach(() => {
+      refreshSpy = jest.spyOn(component,'refresh');
+      resetForecastSpy = jest.spyOn(component,'resetForecast');
+      component.ngOnInit();
+      component.refresh();
+      fixture.detectChanges();
+    });
+
+    it('should trigger the toggle', () => {
+      expect(refreshSpy).toHaveBeenCalled();
+      expect(resetForecastSpy).toHaveBeenCalled();
+    });
   });
 });

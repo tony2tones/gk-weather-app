@@ -84,7 +84,6 @@
   .container {
     display: flex;
     flex-direction: column;
-    height: auto;
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
@@ -175,7 +174,7 @@
   .weather-data {
     display: flex;
     flex-direction: row;
-    height: auto;
+    height: 150%;
   }
 
   .rest-of-week-container {

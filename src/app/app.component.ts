@@ -16,9 +16,9 @@ export class AppComponent implements OnInit {
   public isLoading: boolean = true;
 
   public errorMsg: string = '';
-  
+
   public restOfWeekToggle: boolean = true;
-  
+
   public hasLoaded: boolean = false;
 
   public todayDate: string = '';
@@ -58,7 +58,6 @@ export class AppComponent implements OnInit {
     this.isLoading = false;
     this.errorTitle = err.name;
     this.errorMsg = err.message;
-
   }
 
   public dateFormatter(): void {
@@ -90,8 +89,8 @@ export class AppComponent implements OnInit {
           this.isLoading = false;
         });
   }
-  // CHECK THIS FUNCTION 
-  public futureDateFormatter(weeklyForcast: List[]) {
+
+  public futureDateFormatter(weeklyForcast: List[]): void {
     for (let i = 0; i < weeklyForcast.length; i++) {
       // Add date day to the day of the week data collection
       let dayOfweek = new Date(Date.now() + (i) * 86400000);
@@ -99,7 +98,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public toggleRestOfWeek() {
+  public toggleRestOfWeek(): void {
     this.restOfWeekToggle = !this.restOfWeekToggle;
   }
 
@@ -108,7 +107,7 @@ export class AppComponent implements OnInit {
   }
 
   public refresh(): void {
-    this.resetForecast
+    this.resetForecast();
     window.location.reload();
   }
 }
