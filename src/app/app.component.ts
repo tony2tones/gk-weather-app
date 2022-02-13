@@ -41,6 +41,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (!navigator.geolocation) {
+      this.isLoading = false;
+      console.log('is this working ');
       this.errorTitle = 'An error has occurred'
       this.errorMsg = 'geolocation not supported';
     }
@@ -60,13 +62,21 @@ export class AppComponent implements OnInit {
 
   public errorHandler(err: HttpErrorResponse) {
     console.log(err);
-    if(err.status === 401) {
-      this.errorTitle = 'Unauthorized'
-      this.errorMsg = "You are not authorized to access the weather API please check your API key";
-    }
+    this.errorMsg = err.statusText;
+    this.errorTitle = err.name;
+    // if (err.status === 401) {
+    //   this.errorTitle = 'Unauthorized'
+    //   this.errorMsg = 'You are not authorized to access the weather API please check your API key';
+    // }
+    // if (err.status === 404) {
+    //   this.errorTitle = 'Http failed to response'
+    //   this.errorMsg = 'Request for weather has failed, plaese try again later';
+    // }
+    // if (err.status === 500) {
+    //   this.errorTitle = 'Server error'
+    //   this.errorMsg = 'Server appears to be offline, please try again later..';
+    // }
 
-    // this.errorTitle = 'An error has occurred'
-    //   this.errorMsg = err.message;
   }
 
   public dateFormatter(): void {
@@ -115,4 +125,9 @@ export class AppComponent implements OnInit {
   public resetForecast(): void {
     this.forecast = <Forecast>{};
   }
+
+  public refresh(): void {
+    this.resetForecast
+    window.location.reload();
+}
 }
