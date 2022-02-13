@@ -21,8 +21,4 @@ export class WeekWeatherComponent {
   ngAfterViewChecked() {
     this.renderingComplete.emit(true);
    }
-
-  ngOnInit(): void {
-  }
-
 }

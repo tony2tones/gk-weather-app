@@ -40,11 +40,6 @@ export class AppComponent implements OnInit {
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
-    if (!navigator.geolocation) {
-      // this.isLoading = false;
-      this.errorTitle = 'An error has occurred'
-      this.errorMsg = 'geolocation not supported';
-    }
     this.getForecast();
   }
 
