@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-toast-notifications',
@@ -10,5 +10,9 @@ export class ToastNotificationsComponent {
 
   @Input() errorMsg: string;
 
+  @Output() submitRefresh = new EventEmitter<boolean>();
 
+  public refreshClicked() {
+    this.submitRefresh.emit(true);
+  }
 }
