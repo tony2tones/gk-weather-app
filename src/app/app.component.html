@@ -1,46 +1,56 @@
 <div class="container">
+  <app-toast-notifications *ngIf="!isLoading && !cityName.length"
+  [errorMsg]="errorMsg"
+  [title]="errorTitle"
+  (submitRefresh)="refresh()"
+  ></app-toast-notifications>
   <div *ngIf="isLoading" class="loader">
     <app-loader></app-loader>
   </div>
-  <div *ngIf="!isLoading" class="today-weather">
-    <div class="today-header">
-      <h1>{{ title }}</h1>
+  <div *ngIf="cityName.length && !isLoading" class="weather-data">
+    <div class="today-weather">
+      <div class="today-header">
+        <h1>{{ title }}</h1>
+      </div>
+      <div class="today-details">
+        <p>Weather for Today</p>
+        <p>{{ todayDate }}</p>
+        <p>Area: {{ cityName || "Your area" }}</p>
+        <p class="day-temp">{{ forcastToday.temp?.day | celcuisConverter }}</p>
+        <p class="min-max">
+          Max {{ forcastToday.temp?.max | celcuisConverter }} Min
+          {{ forcastToday.temp?.min | celcuisConverter }}
+        </p>
+        <p class="description">{{ descriptionDay }}</p>
+      </div>
     </div>
-    <div class="today-details">
-      <p>Weather for Today</p>
-      <p>{{ todayDate }}</p>
-      <p>Area: {{ cityName || "Your area" }}</p>
-      <p class="day-temp">{{ forcastToday.temp?.day | celcuisConverter }}</p>
-      <p class="min-max">
-        Max {{ forcastToday.temp?.max | celcuisConverter }} Min
-        {{ forcastToday.temp?.min | celcuisConverter }}
-      </p>
-      <p class="description">{{ descriptionDay }}</p>
-    </div>
-  </div>
-  <div *ngIf="!isLoading"  class="rest-of-week-container">
-    <div class="menuToggle" (click)="toggleRestOfWeek()">
-      <p><span class="desktop-view-hidden">Tap to </span>{{restOfWeekToggle ? "hide" : "show" }} rest of week</p>
-      <span
-        ><img
+    <div *ngIf="!isLoading" class="rest-of-week-container">
+      <div class="menuToggle" (click)="toggleRestOfWeek()">
+        <p>
+          <span class="desktop-view-hidden">Tap to </span
+            >{{ restOfWeekToggle ? "hide" : "show" }} rest of week
+          </p>
+          <span
+          ><img
           [ngClass]="{ rotateClass: restOfWeekToggle }"
           src="../assets/Vector.png"
           alt="triangle with all three sides equal"
-      /></span>
-    </div>
-    <div *ngIf="restOfWeekToggle" class="rest-of-week">
-      <div *ngFor="let dayOfWeek of weekForecast; let i = index">
-        <app-week-weather
-          [minTemp]="dayOfWeek.temp.min"
-          [maxTemp]="dayOfWeek.temp.max"
-          [todayTemp]="dayOfWeek.temp.day"
-          [dateOfWeek]="dayOfWeek.date"
-          (rendingComplete)="hasLoaded = $event"
-        >
-        </app-week-weather>
+          /></span>
+        </div>
+        <div *ngIf="restOfWeekToggle" class="rest-of-week">
+          <div *ngFor="let dayOfWeek of weekForecast; let i = index">
+            <app-week-weather
+            [minTemp]="dayOfWeek.temp.min"
+            [maxTemp]="dayOfWeek.temp.max"
+            [todayTemp]="dayOfWeek.temp.day"
+            [dateOfWeek]="dayOfWeek.date"
+            (rendingComplete)="hasLoaded = $event"
+            >
+          </app-week-weather>
+        </div>
       </div>
+      <button (click)="refresh()" class="btn-refresh">REFRESH</button>
     </div>
   </div>
 </div>
 
-<!-- <button class="btn btn-primary">GET INFO </button> -->

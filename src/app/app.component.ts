@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Forecast, List, Position } from 'src/models/forecast.models';
 import { WeatherService } from './weather.service';
@@ -8,15 +9,17 @@ import { WeatherService } from './weather.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public title = 'gk-weather-app';
+  public title: string = 'gk-weather-app';
+
+  public errorTitle: string = '';
 
   public isLoading: boolean = true;
 
-  public restOfWeekToggle: boolean = true;
-
-  public hasLoaded: boolean = false;
-
   public errorMsg: string = '';
+  
+  public restOfWeekToggle: boolean = true;
+  
+  public hasLoaded: boolean = false;
 
   public todayDate: string = '';
 
@@ -38,6 +41,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (!navigator.geolocation) {
+      // this.isLoading = false;
+      this.errorTitle = 'An error has occurred'
       this.errorMsg = 'geolocation not supported';
     }
     this.getForecast();
@@ -54,8 +59,11 @@ export class AppComponent implements OnInit {
     this.getWeather(postion);
   }
 
-  public errorHandler(err: any) {
-    console.log(err);
+  public errorHandler(err: HttpErrorResponse) {
+    this.isLoading = false;
+    this.errorTitle = err.name;
+    this.errorMsg = err.message;
+
   }
 
   public dateFormatter(): void {
@@ -68,7 +76,6 @@ export class AppComponent implements OnInit {
   }
 
   public getWeather(position: Position): void {
-    // this.isLoading = true;
     this.weatherService.getWeather(position.coords.latitude, position.coords.longitude, this.dayCount)
       .subscribe((response: Forecast) => {
         this.forecast = response;
@@ -85,7 +92,7 @@ export class AppComponent implements OnInit {
       },
         (error: any) => {
           this.errorHandler(error);
-          // this.isLoading = false;
+          this.isLoading = false;
         });
   }
   // CHECK THIS FUNCTION 
@@ -103,5 +110,10 @@ export class AppComponent implements OnInit {
 
   public resetForecast(): void {
     this.forecast = <Forecast>{};
+  }
+
+  public refresh(): void {
+    this.resetForecast
+    window.location.reload();
   }
 }
