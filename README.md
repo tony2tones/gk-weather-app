@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
 
-This project works with the [OpenWeatherMap](https://openweathermap.org/). 
+The weather API used for this project works with the [OpenWeatherMap](https://openweathermap.org/). 
 
 If you are having any authentication issues please
 register a new API Key and update this project's weather.service.ts file found in the services folder.
