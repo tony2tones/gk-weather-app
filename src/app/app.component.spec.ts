@@ -16,13 +16,10 @@ const mockSuccess = (success, error) => {
 
 const mockGetcurrentPosition = jest.fn(mockSuccess);
 
-const mockSuccessHandler = jest.fn(() => Mocks.position.coords);
-
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
-  let navigatorMock;
-  let spy: any;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -49,7 +46,6 @@ describe('AppComponent', () => {
 
   it('should create the app', () => {
     expect(component).toBeTruthy();
-    expect()
   });
 
   describe('Check that forecast is populated via the weather service', () => {
@@ -67,8 +63,7 @@ describe('AppComponent', () => {
       dateFormatterSpy = jest.spyOn(component, 'dateFormatter');
       component.successHandler(Mocks.position);
       fixture.detectChanges();
-    })
-
+    });
 
     it(`should have as title 'gk-weather-app'`, () => {
       expect(successHandlerSpy).toHaveBeenCalled();

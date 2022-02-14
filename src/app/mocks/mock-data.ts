@@ -1,6 +1,18 @@
+import { HttpErrorResponse, HttpEventType, HttpHeaders } from "@angular/common/http";
+
 /* istanbul ignore file */
 export class Mocks {
-    public static errorResponse = {};
+    public static errorResponse:HttpErrorResponse = {
+      error: '',
+      ok: false,
+      name: 'HttpErrorResponse',
+      statusText: 'this is a test error message',
+      message: "",
+      headers: new HttpHeaders,
+      status: 0,
+      url: "",
+      type: HttpEventType.ResponseHeader
+    };
     public static mockData = {
         "city": {
             "id": 3367573,

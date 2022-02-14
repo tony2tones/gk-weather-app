@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
   public errorHandler(err: HttpErrorResponse) {
     this.isLoading = false;
     this.errorTitle = err.name;
-    this.errorMsg = err.message;
+    this.errorMsg = err.statusText ? err.statusText : err.message;
   }
 
   public dateFormatter(): void {
