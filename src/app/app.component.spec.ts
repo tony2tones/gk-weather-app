@@ -4,10 +4,10 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { BrowserModule } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { AppComponent } from './app.component';
-import { CelcuisConverter } from './celcuis-converter.directive';
+import { CelcuisConverter } from './directives/celcuis-converter.directive';
 import { Mocks } from './mocks/mock-data';
 import { MockApiService } from './mocks/mock-services';
-import { WeatherService } from './weather.service';
+import { WeatherService } from './services/weather.service';
 
 const mockSuccess = (success, error) => {
   success({ coords: Mocks.position.coords });
@@ -33,6 +33,14 @@ describe('AppComponent', () => {
     }).compileComponents();
     // @ts-ignore
     global.navigator.geolocation = { getCurrentPosition: mockGetcurrentPosition }
+
+    const location: Location = window.location;
+    delete window.location;
+    window.location = {
+      ...location,
+      reload: jest.fn()
+    };
+
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     component.ngOnInit();
@@ -77,7 +85,7 @@ describe('AppComponent', () => {
     let toggleRestOfWeekSpy;
 
     beforeEach(() => {
-      toggleRestOfWeekSpy = jest.spyOn(component,'toggleRestOfWeek');
+      toggleRestOfWeekSpy = jest.spyOn(component, 'toggleRestOfWeek');
       component.toggleRestOfWeek();
       fixture.detectChanges();
     });
@@ -93,8 +101,8 @@ describe('AppComponent', () => {
     let resetForecastSpy;
 
     beforeEach(() => {
-      refreshSpy = jest.spyOn(component,'refresh');
-      resetForecastSpy = jest.spyOn(component,'resetForecast');
+      refreshSpy = jest.spyOn(component, 'refresh');
+      resetForecastSpy = jest.spyOn(component, 'resetForecast');
       component.ngOnInit();
       component.refresh();
       fixture.detectChanges();
@@ -105,4 +113,22 @@ describe('AppComponent', () => {
       expect(resetForecastSpy).toHaveBeenCalled();
     });
   });
+
+  describe('errorHandler check', () => {
+    let errorHandlerSpy;
+
+    beforeEach(() => {
+      errorHandlerSpy = jest.spyOn(component, 'errorHandler');
+      component.errorHandler(Mocks.errorResponse);
+      fixture.detectChanges();
+    });
+
+    test('check and assert Mocks.errorResponseor message', () => {
+      expect(errorHandlerSpy).toHaveBeenCalledWith(Mocks.errorResponse);
+      expect(component.isLoading).toBe(false);
+      jest.restoreAllMocks();
+      window.location = location;
+    });
+  });
+
 });

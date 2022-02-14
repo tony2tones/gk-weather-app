@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Forecast, List, Position } from 'src/models/forecast.models';
-import { WeatherService } from './weather.service';
+import { Forecast, List, Position } from './models/forecast.models';
+import { WeatherService } from './services/weather.service';
 
 @Component({
   selector: 'app-root',
