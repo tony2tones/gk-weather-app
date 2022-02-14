@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CelcuisConverter } from '../../celcuis-converter.directive';
+import { CelcuisConverter } from '../../directives/celcuis-converter.directive';
 
 import { WeekWeatherComponent } from './week-weather.component';
 
