@@ -15,6 +15,7 @@
 .error-container * {
     background-color: whitesmoke;
     color:black;
+    word-wrap: break-word;
     font-family: sans-serif;
     font-size: x-large;
 }

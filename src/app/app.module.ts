@@ -6,7 +6,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CelcuisConverter } from './celcuis-converter.directive';
 import { WeekWeatherComponent } from './components/week-weather/week-weather.component';
-import { ToastNotificationsComponent } from './components/toast-notifications/toast-notifications.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +14,11 @@ import { ToastNotificationsComponent } from './components/toast-notifications/to
     LoaderComponent,
     CelcuisConverter,
     WeekWeatherComponent,
-    ToastNotificationsComponent
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    // BrowserAnimationsModule,
-    // MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

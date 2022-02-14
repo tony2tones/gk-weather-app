@@ -1,9 +1,9 @@
 <div class="container">
-  <app-toast-notifications *ngIf="!isLoading && !cityName.length"
+  <app-notifications *ngIf="!isLoading && !cityName.length"
   [errorMsg]="errorMsg"
   [title]="errorTitle"
   (submitRefresh)="refresh()"
-  ></app-toast-notifications>
+  ></app-notifications>
   <div *ngIf="isLoading" class="loader">
     <app-loader></app-loader>
   </div>

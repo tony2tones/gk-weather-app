@@ -1,8 +1,8 @@
-import { CelcuisConverterDirective } from './celcuis-converter.directive';
+import { CelcuisConverter } from './celcuis-converter.directive';
 
-describe('CelcuisConverterDirective', () => {
+describe('CelcuisConverter', () => {
   it('should create an instance', () => {
-    const directive = new CelcuisConverterDirective();
+    const directive = new CelcuisConverter();
     expect(directive).toBeTruthy();
   });
 });
