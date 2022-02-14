@@ -1,8 +1,8 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { BrowserModule } from '@angular/platform-browser';
-import { of } from 'rxjs';
+import { observable, of, throwError } from 'rxjs';
 import { AppComponent } from './app.component';
 import { CelcuisConverter } from './directives/celcuis-converter.directive';
 import { Mocks } from './mocks/mock-data';
@@ -19,6 +19,7 @@ const mockGetcurrentPosition = jest.fn(mockSuccess);
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
+  let weatherService: WeatherService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -40,7 +41,7 @@ describe('AppComponent', () => {
       ...location,
       reload: jest.fn()
     };
-
+    weatherService = TestBed.inject(WeatherService);
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     component.ngOnInit();
@@ -128,6 +129,27 @@ describe('AppComponent', () => {
       expect(component.isLoading).toBe(false);
       jest.restoreAllMocks();
       window.location = location;
+    });
+  });
+
+  describe('getWeather error check', () => {
+    let errorHandlerSpy;
+    let getWeatherSpy;
+    const error: HttpErrorResponse = {
+      status: 401,
+      message: 'You are not logged in',
+    } as HttpErrorResponse;
+
+    beforeEach(() => {
+      errorHandlerSpy = jest.spyOn(component, 'errorHandler');
+      getWeatherSpy = jest.spyOn(weatherService, 'getWeather').mockReturnValue(throwError(error));
+      component.errorHandler(Mocks.errorResponse);
+      fixture.detectChanges();
+    });
+
+    test('check and assert Mocks.errorResponseor message', () => {
+      expect(errorHandlerSpy).toHaveBeenCalledWith(Mocks.errorResponse);
+      expect(component.isLoading).toBe(false);
     });
   });
 
