@@ -74,7 +74,7 @@ describe('AppComponent', () => {
       fixture.detectChanges();
     });
 
-    it(`should have as title 'gk-weather-app'`, () => {
+    it(`should check successHandler and getWeather is called with mock coords'`, () => {
       expect(successHandlerSpy).toHaveBeenCalled();
       expect(getWeatherSpy).toHaveBeenCalledWith(Mocks.position);
       expect(mockGetcurrentPosition).toHaveBeenCalled();
@@ -124,7 +124,7 @@ describe('AppComponent', () => {
       fixture.detectChanges();
     });
 
-    test('check and assert Mocks.errorResponseor message', () => {
+    test('check and assert Mocks.errorResponseor message and resets window.location mocks', () => {
       expect(errorHandlerSpy).toHaveBeenCalledWith(Mocks.errorResponse);
       expect(component.isLoading).toBe(false);
       jest.restoreAllMocks();
@@ -147,11 +147,10 @@ describe('AppComponent', () => {
       fixture.detectChanges();
     });
 
-    test('check and assert Mocks.errorResponseor message', () => {
+    test('check and assert Mocks.errorResponseor message and other asserts', () => {
       expect(errorHandlerSpy).toHaveBeenCalledWith(error);
       expect(getWeatherSpy).toHaveBeenCalled();
       expect(component.isLoading).toBe(false);
     });
   });
-
 });

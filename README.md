@@ -7,6 +7,10 @@ The weather API used for this project is the [OpenWeatherMap](https://openweathe
 If you are having any authentication issues please,
 register a new API Key and update this project's weather.service.ts file found in the services folder.
 
+### Before running the project: ###
+
+Please first run `npm run install` to install all node_modules and other dependencies.
+
 ## Development server
 
 Run `ng serve` or `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
