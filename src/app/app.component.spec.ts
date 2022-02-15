@@ -137,18 +137,19 @@ describe('AppComponent', () => {
     let getWeatherSpy;
     const error: HttpErrorResponse = {
       status: 401,
-      message: 'You are not logged in',
+      message: 'UnAuthorized',
     } as HttpErrorResponse;
 
     beforeEach(() => {
       errorHandlerSpy = jest.spyOn(component, 'errorHandler');
       getWeatherSpy = jest.spyOn(weatherService, 'getWeather').mockReturnValue(throwError(error));
-      component.errorHandler(Mocks.errorResponse);
+      component.getForecast();
       fixture.detectChanges();
     });
 
     test('check and assert Mocks.errorResponseor message', () => {
-      expect(errorHandlerSpy).toHaveBeenCalledWith(Mocks.errorResponse);
+      expect(errorHandlerSpy).toHaveBeenCalledWith(error);
+      expect(getWeatherSpy).toHaveBeenCalled();
       expect(component.isLoading).toBe(false);
     });
   });
