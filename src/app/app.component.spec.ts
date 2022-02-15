@@ -2,7 +2,7 @@ import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { BrowserModule } from '@angular/platform-browser';
-import { observable, of, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { AppComponent } from './app.component';
 import { CelcuisConverter } from './directives/celcuis-converter.directive';
 import { Mocks } from './mocks/mock-data';

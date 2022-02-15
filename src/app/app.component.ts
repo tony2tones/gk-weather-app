@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
 
   constructor(private weatherService: WeatherService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getForecast();
   }
 
