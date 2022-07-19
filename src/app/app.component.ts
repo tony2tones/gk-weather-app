@@ -9,7 +9,7 @@ import { WeatherService } from './services/weather.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public title: string = 'gk-weather-app';
+  public title: string = 'weather-app';
 
   public errorTitle: string = '';
 
