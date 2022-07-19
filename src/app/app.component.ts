@@ -91,10 +91,9 @@ export class AppComponent implements OnInit {
   }
 
   public futureDateFormatter(weeklyForcast: List[]): void {
-    let index = 1;
     for (let i = 0; i < weeklyForcast.length; i++) {
       // Add date day to the day of the week data collection
-      let dayOfweek = new Date(Date.now() + (index + i) * 86400000);
+      let dayOfweek = new Date(Date.now() + (i + 1) * 86400000);
       weeklyForcast[i].date = dayOfweek.getDate();
     }
   }
